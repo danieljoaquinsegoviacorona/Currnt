@@ -1,0 +1,11 @@
+var express = require('express');
+var router = express.Router();
+const controller = require('../controllers/crud');
+router.get('/healthCheck', controller.healthCheck);
+router.get('/list', controller.list);
+router.post('/create', controller.create);
+router.put('/update/:id', controller.update);
+router.get('/get/:id', controller.get);
+router.get('/getGender/:id', controller.getGender);
+router.delete('/delete/:id', controller.delete);
+module.exports = router;

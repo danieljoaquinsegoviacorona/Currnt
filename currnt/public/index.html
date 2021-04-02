@@ -1,0 +1,159 @@
+<html>
+
+<head>
+  <title>Materialize FE</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="/stylesheets/materialize.min.css" media="screen,projection" />
+</head>
+
+<body>
+  <h1>Currnt</h1>
+  <div class="divider"></div>
+  <p>Welcome to Express + Materialize</p>
+  <div class="divider"></div>
+  <div class="row">
+
+    <!-- ************************************ LEFT PANEL ******************************************* -->
+    <div class="col s3 center-align" id="sidePanel">
+      <div class="row">
+        <a class="waves-effect waves-light btn" onclick="userListing()">User Listing</a>
+      </div>
+      <div class="row">
+        <a class="waves-effect waves-light btn" onclick="createUser()">Create User</a>
+      </div>
+    </div>
+    <!-- ************************************ END LEFT PANEL ******************************************* -->
+
+    <div class="col s9" id="content">
+      <!-- ************************************ USER LISTING DIV ******************************************* -->
+      <div id="userListing" class="row hide">
+
+      </div>
+      <!-- ************************************ END USER LISTING DIV ******************************************* -->
+
+      <!-- ************************************ UPDATE USER FORM ******************************************* -->
+      <div class="row hide" id="updateUserForm" style="margin: 5em;">
+        <form class="col s12">
+          <input id="userUpdateId" name="user_id" type="hidden">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="u_first_name" name="first_name" type="text">
+              <label>First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="u_last_name" name="last_name" type="text">
+              <label>Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="u_password" name="password" type="password">
+              <label>Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="u_birth_date" name="birth_date" type="text" class="datepicker">
+              <label>Birth Date</label>
+            </div>
+            <div class="input-field col s6">
+              <select id="u_gender" name="gender">
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+              </select>
+              <label>Gender</label>
+            </div>
+          </div>
+          <div class="row right-align">
+            <button class="btn waves-effect waves-light" style="margin-right: 5em;" onclick="updateData()">Update
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+
+      </div>
+      <!-- ************************************ END UPDATE USER FORM ******************************************* -->
+
+
+      <!-- ************************************ CREATE USER FORM ******************************************* -->
+
+      <div class="row hide" id="createUserForm" style="margin: 5em;">
+        <form action="http://localhost:3000/users/create" method="POST" target="_blank" class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="first_name" name="first_name" type="text" class="validate">
+              <label>First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="last_name" name="last_name" type="text" class="validate">
+              <label>Last Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" name="password" type="password" class="validate">
+              <label>Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="birth_date" name="birth_date" type="text" class="datepicker">
+              <label>Birth Date</label>
+            </div>
+            <div class="input-field col s6">
+              <select id="gender" name="gender">
+                <option default>Select gender</option>
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+              </select>
+              <label>Gender</label>
+            </div>
+          </div>
+          <div class="row right-align">
+            <button class="btn waves-effect waves-light" style="margin-right: 5em;" type="submit">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- ************************************ END CREATE USER FORM ******************************************* -->
+
+  <!-- ************************************ MODAL DIV ******************************************* -->
+  <div id="modal1" class="modal">
+    <div class="modal-content" id="contentModal">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+  </div>
+  <!-- ************************************ END MODAL DIV ******************************************* -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="/javascripts/tableManager.js"></script>
+  <script type="text/javascript" src="/javascripts/materialize.min.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      var options = {
+        format: 'yyyy-mm-dd'
+      };
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems, options);
+    });
+  </script>
+</body>
+
+</html>
